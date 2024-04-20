@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Front Page</title>
+</head>
+<body>
+    <h1>Front Page</h1>
+    <textarea id="textarea1" style="display:block;"></textarea>
+    <textarea id="textarea2" style="display:block;"></textarea>
+
+    <script>
+        function fetchDataAndDisplay() {
+            fetch('/get_data1')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('textarea1').innerText = data;
+                });
+
+            fetch('/get_data2')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('textarea2').innerText = data;
+                });
+        }
+
+        fetchDataAndDisplay(); // Fetch data initially
+
+        // Fetch data every 2 seconds
+        setInterval(fetchDataAndDisplay, 2000);
+    </script>
+</body>
+</html>
